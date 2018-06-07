@@ -1,18 +1,18 @@
-
 # ---------------------------------------------------------------------------------------------------------------------
 # HTTPS Proxy
 # ---------------------------------------------------------------------------------------------------------------------
 
 resource "google_compute_target_https_proxy" "target_https_proxy" {
-  name              = "${var.proxy_name}"
-  url_map           = "${google_compute_url_map.https_url_map.self_link}"
-  ssl_certificates  = ["${google_compute_ssl_certificate.target_https_proxy_certficate.self_link}"]
+  name             = "${var.proxy_name}"
+  url_map          = "${google_compute_url_map.https_url_map.self_link}"
+  ssl_certificates = ["${google_compute_ssl_certificate.target_https_proxy_certficate.self_link}"]
 }
 
 resource "google_compute_ssl_certificate" "target_https_proxy_certficate" {
-  name = "defailt-ssl-certificate-${random_id.rand.dec}"
+  name        = "defailt-ssl-certificate-${random_id.rand.dec}"
   private_key = "${file("private.key")}"
   certificate = "${file("certificate.crt")}"
+
   lifecycle {
     create_before_destroy = true
   }
@@ -23,12 +23,12 @@ resource "random_id" "rand" {
 }
 
 resource "google_compute_url_map" "https_url_map" {
-  name        = "${var.url_map_name}"
+  name = "${var.url_map_name}"
 
   default_service = "${google_compute_backend_service.https_backend_service.self_link}"
 
   host_rule {
-    hosts = ["*"]
+    hosts        = ["*"]
     path_matcher = "allpaths"
   }
 
@@ -51,7 +51,7 @@ resource "google_compute_backend_service" "https_backend_service" {
   enable_cdn  = false
 
   backend {
-	group = "${var.instance_group_link}"
+    group = "${var.instance_group_link}"
   }
 
   health_checks = ["${var.healthcheck_link}"]
@@ -62,5 +62,3 @@ resource "google_compute_global_forwarding_rule" "https_glocal_forwarding_rule" 
   target     = "${google_compute_target_https_proxy.target_https_proxy.self_link}"
   port_range = "443"
 }
-
-

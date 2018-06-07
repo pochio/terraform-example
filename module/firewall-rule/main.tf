@@ -1,4 +1,3 @@
-
 resource "google_compute_firewall" "default-allow-http" {
   name    = "${var.fw_rule_prefix}-allow-http"
   network = "${var.vpc_network}"
@@ -19,6 +18,7 @@ resource "google_compute_firewall" "default-allow-https" {
     protocol = "tcp"
     ports    = ["443"]
   }
+
   target_tags = ["${var.fw_rule_prefix}-https-server"]
 }
 

@@ -1,12 +1,11 @@
-
 # ---------------------------------------------------------------------------------------------------------------------
 # VPC Subnetwork
 # ---------------------------------------------------------------------------------------------------------------------
 
 resource "google_compute_network" "default-vpc-network" {
-  name = "${var.vpc_name}"
+  name                    = "${var.vpc_name}"
   auto_create_subnetworks = "false"
-  routing_mode = "REGIONAL"
+  routing_mode            = "REGIONAL"
 }
 
 resource "google_compute_subnetwork" "default-subnetwork" {

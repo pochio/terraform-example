@@ -1,7 +1,6 @@
-
 # ---------------------------------------------------------------------------------------------------------------------
 # Instance Template - OUTPUT -
 # ---------------------------------------------------------------------------------------------------------------------
 output "instance_template_link" {
-    value = "${google_compute_instance_template.instance_template.self_link}"
+  value = "${google_compute_instance_template.instance_template.self_link}"
 }

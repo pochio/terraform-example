@@ -1,4 +1,3 @@
-
 # ---------------------------------------------------------------------------------------------------------------------
 # Instance group, Health check
 # ---------------------------------------------------------------------------------------------------------------------
@@ -6,12 +5,12 @@
 resource "google_compute_region_instance_group_manager" "region_instance_group_manager" {
   name = "${var.group_name}"
 
-  base_instance_name         = "${var.source_image}"
-  instance_template          = "${var.instance_template_link}"
-  region                     = "${var.region}"
-  distribution_policy_zones  = "${var.zone}"
+  base_instance_name        = "${var.source_image}"
+  instance_template         = "${var.instance_template_link}"
+  region                    = "${var.region}"
+  distribution_policy_zones = "${var.zone}"
 
-  target_size  = "${var.target_size}"
+  target_size = "${var.target_size}"
 
   named_port {
     name = "http"
@@ -34,6 +33,6 @@ resource "google_compute_health_check" "compute_health_check" {
 
   http_health_check {
     request_path = "/"
-    port = "80"
+    port         = "80"
   }
 }
