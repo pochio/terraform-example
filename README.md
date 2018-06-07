@@ -8,9 +8,9 @@
 - デプロイ
 
 ```bash
-$ export GOOGLE_APPLICATION_CREDENTIALS='account.json
+$ export GOOGLE_APPLICATION_CREDENTIALS='account.json'
 $ terraform init
-$ terraform paln
+$ terraform plan
 $ terraform apply
 ```
 
