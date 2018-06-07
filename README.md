@@ -1,5 +1,5 @@
 
-# Terraform + GCP Template
+# Terraform = GCP example
 
 - [packer + ansible](https://github.com/pochio/packer-example) でイメージを作成
 - main.tf のプロジェクト・バックエンドを修正
