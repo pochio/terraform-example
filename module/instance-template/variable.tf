@@ -17,7 +17,7 @@ variable "vpc_subnetwork" {
   default = "default"
 }
 
-variable "tags" {
+variable "firewall_rules" {
   type    = "list"
   default = ["http-server", "https-server"]
 }

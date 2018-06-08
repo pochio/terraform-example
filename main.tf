@@ -18,8 +18,8 @@ module "vpc-network" {
   subnetwork_cidr = "${var.subnetwork_cidr}"
 }
 
-module "firewall-rule" {
-  source      = "./module/firewall-rule"
+module "firewall" {
+  source      = "./module/firewall"
   vpc_network = "${module.vpc-network.default-network}"
 
   fw_rule_prefix = "${var.fw_rule_prefix}"
@@ -28,12 +28,12 @@ module "firewall-rule" {
 
 module "instance-template" {
   source         = "./module/instance-template"
+  firewall_rules = "${module.firewall.rules}"
   vpc_subnetwork = "${module.vpc-network.asia-northeast1-subnetwork}"
 
   template_name   = "${var.template_name}"
   machine_type    = "${var.machine_type}"
   source_image    = "${var.source_image}"
-  tags            = "${var.tags}"
   service_account = "${var.service_account}"
 }
 

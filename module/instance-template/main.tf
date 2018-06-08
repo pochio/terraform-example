@@ -7,7 +7,7 @@ resource "google_compute_instance_template" "instance_template" {
   machine_type   = "${var.machine_type}"
   can_ip_forward = false
 
-  tags = "${var.tags}"
+  tags = "${var.firewall_rules}"
 
   scheduling {
     automatic_restart   = true

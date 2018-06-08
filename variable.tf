@@ -54,11 +54,6 @@ variable "source_image" {
   default = "packer-XXXXXXXXXX"
 }
 
-variable "tags" {
-  type    = "list"
-  default = ["default-terraform-http-server", "default-terraform-https-server", "default-terraform-allow-ssh"]
-}
-
 variable "service_account" {
   type    = "list"
   default = ["userinfo-email", "compute-ro", "storage-ro", "sql-admin"]
